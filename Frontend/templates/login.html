@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitel WorkDesk</title>
+    <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+    <div class="login">
+        <h2>LOGIN</h2>
+        <form class="login-form" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <label>
+                Email<input type="email" name="email" id="email" placeholder="EMAIL" required>
+            </label><br>
+            <label >
+                Password<input type="password" name="password" id="password" placeholder="PASSWORD" required>
+            </label><br>
+            <label for="role">Select Role:</label>
+            <select name="role" id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="technician">Technician</option>
+            </select><br>
+            <input class="login-btn" type="submit" value="Login">
+        </form>
+    </div>
+    <script src="{% static 'js/message.js' %}"></script>
+</body>
+</html>

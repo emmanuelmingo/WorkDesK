@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitel WorkDesk</title>
+    <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="task-detail-body">
+    <main class="task-detail-main">
+        <div class="task-detail-card">
+            <h2>
+                Task {{task.task_id}}
+            </h2>
+            <div class="task-detail-title">
+                <h3>{{task.title}}</h3>
+                <p>{{task.status}}</p>
+            </div>
+            <div class="task-detail-start-date">
+                <span>Assigned Date</span>
+                <p>{{task.start_date}}</p>
+            </div>
+            <div class="task-detail-due-date">
+                <span>Due Date</span>
+                <p>{{task.due_date}}</p>
+            </div>
+            <div class="task-detail-priority">
+                <span>Priority</span>
+                <p>{{task.priority}}</p>
+            </div>
+            <div class="task-detail-client">
+                <span>Client</span>
+                <div class="client-info">
+                    <p>John Doe</p>
+                    <p>(6)123456789</p>
+                </div>
+            </div>
+            <div class="task-detail-description">
+                <span>Description</span>
+                <p>{{task.description}}</p>
+            </div>
+            <div class="task-detail-location">
+                <span>Location</span>
+                <p>SGC, Bonapriso</p>
+            </div>
+            {% if task.status == 'In progress' %}
+                <form class="attachment-form" action="{% url 'task_detail' task.task_id technician.role%}" method="post">
+                    {% csrf_token %}
+                    <h3>Attachments</h3>
+                    <p>Upload a file to mark the task as completed</p>
+                    {% if task.file %}
+                        <embed src="{{ task.file.url }}" type="application/pdf" width="600px" height="500px" />
+                    {% else %}
+                        <p>No file uploaded yet.</p>
+                    {% endif %}
+                    <input type="file" name="file">
+                    <input type="submit" value="Mark as Completed" class="upload-button">
+                </form>
+            {% elif task.status == 'Not started' %}
+                <form class="attachment-form" action="{% url 'task_detail' task.task_id technician.role%}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Start Task" class="upload-button">
+                </form>
+            {% elif task.status == 'Completed' %}
+                
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

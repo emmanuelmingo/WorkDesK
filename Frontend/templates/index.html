@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitel WorkDesk</title>
+    <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <header class="header">
+        <img src="{% static 'header icons/servitel-logo.png' %}" alt="Company-logo">
+        <h2>Servitel WorkDesk</h2>
+    </header>
+    <div class="layout">
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <ul>
+                    <li>
+                        <i class="ri-dashboard-fill"></i>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li>
+                        <i class="ri-list-check-3"></i>
+                        <a href="{% url 'task'%}">Tasks</a>
+                    </li>
+                    <li>
+                        <i class="ri-user-fill"></i>
+                        <a href="{% url 'technicians'%}">Technicians</a>
+                    </li>
+                    <li>
+                        <i class="ri-article-line"></i>
+                        <a href="#">Reports</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <main class="dashboard-main">
+        <section>
+            <div class="box-container">
+                <div class="box">
+                    <div class="icon">
+                        <i class="ri-bill-fill"></i>
+                    </div>
+                    <div class="text">
+                        <h4>15</h4>
+                        <p>Open Task</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="ri-time-fill"></i>
+                    </div>
+                    <div class="text">
+                        <h4>15</h4>
+                        <p>Pending</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="ri-play-mini-fill"></i>
+                    </div>
+                    <div class="text">
+                        <h4>15</h4>
+                        <p>In-progess</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="ri-check-line"></i>
+                    </div>
+                    <div class="text">
+                        <h4>15</h4>
+                        <p>Completed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Task List</h2>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,901 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+
+/* Dashboard Page */
+@media screen and (min-width:1115px) {
+    .dashboard-body {
+    font-family: 'Inter', sans-serif;
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+    align-content: start;
+    }
+    .item:nth-child(1) {
+    width: 100%;
+    height: 5%;
+    }
+
+    .item:nth-child(2) {
+    width: 30%;
+    height: 75%;
+    }
+
+    .item:nth-child(3) {
+    flex-grow: 1;
+    height: 75%;
+    }
+
+    /* HEADER STYLES */
+    .header{
+        height: 70px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 3%;
+        background-color: #417dff;
+
+    }
+    .header img{
+        width: 50px;
+    }
+    .header h2{
+        color: white;
+    }
+
+    /*Sidebar Styles */
+    .dashboard-sidebar{
+        border: 1px solid white;
+        width: 260px;
+        min-height: 100vh;
+        height: 100%;
+        background-color: white;
+    }
+    .dashboard-nav{
+        padding: 20% ;
+        width: 100%;
+        
+    }
+    .dashboard-nav ul li{
+        list-style: none;
+        border: 1px, solid white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    .dashboard-nav ul li a{
+        text-decoration: none;
+        color: rgb(33, 33, 33);
+        font-size: 1.25rem;
+    }
+    .dashboard-nav ul li i{
+        color: #417dff;
+        font-size: 1.25rem;
+    }
+    .dashboard-nav ul li:hover{
+        background-color: #b6cdff;
+    }
+
+
+    .sidebar{
+        border: 1px solid white;
+        width: 300px;
+        min-height: 100vh;
+        height: 100%;
+        background-color: #417dff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20%;
+    }
+    .sidebar h2{
+        font-size: 2rem;
+        color: white;
+    }
+
+    .nav{
+        padding: 30% 20% ;
+        width: 100%;
+    }
+    .nav ul li{
+        list-style: none;
+        border: 1px, solid #417dff;
+        border-radius: 10px;
+        padding: 10px 10px;
+        margin-bottom: 30px;
+    }
+    .nav ul li a{
+        text-decoration: none;
+        color: white;
+        font-size: 1.25rem;
+    }
+    .nav ul li i{
+        color: #cbcbcb;
+        font-size: 1.25rem;
+    }
+    .nav ul li:hover{
+        background-color: #6ab4ff;
+    }
+
+    /* Main Styles */
+    .dashboard-main{
+        max-width: 1200px;
+        width: 100%;
+        margin-left: 20px;
+    }
+    .box-container{
+        display: flex;
+        gap: 5%;
+        width: 100%;
+        margin: 30px 0;
+        margin-right: 20px;
+    }
+    .box{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid white;
+        border-radius: 5px;
+        max-width:400px;
+        width: 100%;
+        padding: 15px 20px ;
+        background-color: white;
+    }
+    .icon{
+        font-size: 1.5rem;
+        border: 1px solid;
+        border-radius: 48%;
+        padding: 9px;
+        background-color: #3373ff;
+        color: white;
+    }
+
+    /* Login Page */
+    .login-body{
+        background-color: #417dff;
+        font-family: 'Inter', sans-serif;
+    }
+    .login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 10px;
+        background-color: white;
+        width: 20%;
+        margin: 7% 40%;
+        padding: 3% 12% 5%;
+    }
+    .login h2{
+        font-size: 2rem;
+        font-weight:600;
+        margin-bottom: 20px;
+    }
+    .login-form input{
+        margin-bottom: 20px;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 20px;
+        padding: 20px;
+        font-size: 1rem;
+    }
+    .login-form label{
+        font-size: 1.25rem;
+        padding-left: 10px;
+        padding-bottom: 50px;
+    }
+    .login-form select{
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 20px;
+        padding: 10px;
+        cursor: pointer;    
+    }
+
+    .login-btn{
+        margin-top: 20px;
+        padding: 10px;
+        width: 240px;
+        font-size: 1.25rem;
+        background-color: #3373ff;
+        color: white;
+        cursor: pointer;
+    }
+    .login-btn:hover{
+        border-color: #3373ff;
+    }
+    .login-form input:focus{
+        outline: none;
+    }
+
+    /* Messeges Styles */
+    .alert {
+        position: fixed;
+        top: 30px;
+        left: 42%;
+        z-index: 9999;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px 20px;
+        color: #1b1b1b;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: opacity 0.5s;
+        opacity: 1;
+    }
+    .alert.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .general-body {
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    display: flex;
+    gap: 2%;
+    flex-wrap: nowrap;
+    align-content: start;
+    background-color: rgb(248, 248, 248);
+    }
+
+    .item:nth-child(1) {
+    width: 30%;
+    height: 100%;
+    }
+
+    .item:nth-child(3) {
+    flex-grow: 1;
+    height: 100%;
+    }
+
+    .task-main{
+        padding: 4%;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .task-main a{
+        color: white;
+        text-decoration: none;
+        padding: 15px;
+        margin-left: 85%;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: #3373ff;
+    }
+    .task-filter{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-top: 6%;
+        border: 1px solid white;
+        border-radius: 5px;
+        background-color: white;
+        padding: 5px 15px;
+        width: 800px;
+        margin-bottom: 20px;
+    }
+    .filter-btn{
+        padding: 10px 15px;
+        color: white;
+        background-color: #3373ff;
+        border: 1px solid;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+    .filter-btn:hover{
+        cursor: pointer;
+    }
+    /* Table Styles */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border-top: 1px solid #ddd;   
+        border-bottom: 1px solid #ddd; 
+        padding: 10px;
+        text-align: left;
+        background-color: white
+    }
+
+    /*
+    .status.not-started {
+        border: 1px solid #e7e7e7;
+        border-radius: 100px;
+        border-left: none;
+        border-right: none;
+        padding: 2px 2px;
+        padding-left: 10px;
+        width: 120px;
+        background-color: rgb(236, 236, 236);
+        
+    }
+
+    .status.in-progress {
+        border: 1px solid #e7e7e7;
+        border-radius: 100px;
+        border-left: none;
+        border-right: none;
+        padding: 2px 2px;
+        padding-left: 10px;
+        width: 120px;
+        background-color: #3373ff;
+        color: white;
+    }
+
+    .status.completed {
+        border: 1px solid #e7e7e7;
+        border-radius: 100px;
+        border-left: none;
+        border-right: none;
+        padding: 2px 2px;
+        padding-left: 10px;
+        width: 120px;
+        background-color: rgb(162, 255, 23);
+        color: white;
+    }
+    */
+
+    /* Task Form Styles */
+    .assign-task-main{
+        margin: 6%;
+        right: 0;
+    }
+    .assign-task-main h2{
+        margin-bottom: 40px;
+    }
+    .assign-task-form input{
+        margin-bottom: 20px;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        min-width: 100px;
+        width: 100%;
+    }
+    .assign-task-form label{
+        font-size: 1.25rem;
+        padding-left: 5px;
+        padding-bottom: 50px;
+    }
+    .assign-task-form select{
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;    
+    }
+    .assign-task-date{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .assign-task-date input{
+        width: 400px;
+    }
+    .assign-task-btn input{
+        width: 100px;
+    }
+
+    .assign-task-btn input:hover{
+        cursor: pointer;
+        background-color: #6ab4ff;
+    }
+    .assign-task-description{
+        padding: 0;
+        height: 100px;
+    }
+
+    .assign-task-form input:focus{
+        outline: none;
+    }
+
+    /* Task Detail Styles */
+    .task-detail-body{
+        background-color: #f7f7f7;
+        font-family: 'Inter', sans-serif;
+    }
+    .task-detail-header{
+        height: 75px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+    }
+    .task-detail-header h2{
+        padding: 20px 150px;
+        font-size: 2rem;
+        color: #3373ff;
+    }
+
+    .task-detail-main{
+        padding-left: 140px;
+    }
+    .task-detail-main h2{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 10px;
+    }
+
+    .task-detail-icon{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+    .task-detail-icon img{
+        border-radius: 50%;
+        background-color: rgb(251, 251, 251);
+        width: 125px;
+    }
+    .task-detail-icon p{
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .task-detail-status{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding-left: 10px;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }  
+    .task-detail-status span{
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+    .status-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgb(238, 238, 238);
+        border-radius: 20px;
+        background-color: rgb(238, 238, 238);
+        padding: 5px 15px;
+    }
+    .status-container i{
+        color: rgb(175, 175, 175);
+    }
+    .task-detail-description{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .task-detail-description span{
+        padding-left: 10px;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .task-detail-description p{
+        padding-left: 10px;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+    .task-detail-title{
+        display: flex;
+        gap: 10px;
+    }
+    .task-detail-title span{
+        padding-left: 10px;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .task-detail-title p{
+        padding-left: 10px;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+    .task-detail-date{
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        gap: 150px;
+        margin-bottom: 15px;
+    }
+    .start-date,
+    .due-date{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .start-date span,
+    .due-date span{
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .start-date p,
+    .due-date p{
+        font-size: 1.25rem;
+    }
+    .task-detail-attachments{
+        padding-left: 10px;
+    }
+    .task-detail-attachments span{
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    /* Technician Page Styles */
+    .technician-main{
+        font-family: 'Inter', sans-serif;
+        padding: 20px;
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);  
+        gap: 12%; 
+        padding: 100px 30px;
+    }
+    .card{
+        background-color: #f8f9fa;
+        padding: 20px;
+        gap: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        min-width: 300px;
+    }
+    .card-info{
+        display: flex;
+        gap: 20px;
+    }
+    .card-info img{
+        border: 1px solid rgb(238, 238, 238);
+        border-radius: 48%;
+        width: 100px;
+        padding: 10px;
+    }
+    .card-info p{
+        padding-top: 10px;
+        font-size: 1.2rem;
+    }
+    .card-fill{
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .card-contact,
+    .card-status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .card-status{
+        border: 1px solid #eeeeee;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: #eeeeee;
+        width: 110px;
+    }
+    .card-status i{
+        color: lightgreen;
+    }
+    .card-status p{
+        font-size: 1.1rem;
+    }
+
+}
+
+/* Smaller Screens */
+@media screen and (max-width:960px){
+    /* Technician Dashboard */
+    .tech-body{
+        font-family: 'Poppins', sans-serif;
+        background-color: rgb(241, 241, 241);
+        font-weight: 400;
+    }
+    .tech-body h5{
+        padding-left: 5%;
+        font-size: 1.25rem;
+    }
+    .tech-header{
+        display: flex;
+        justify-content: space-between;
+        height: 120px;
+        padding: 15px 20px;
+        background-color: #2079ff;
+        color: white;
+        position: relative;
+        z-index: -1;
+    }
+    .tech-header::after {
+        content: "";
+        position: absolute;
+        bottom: -41px;
+        left: 5%;
+        width: 103px;
+        height: 92px;
+        background: #2079ff; 
+        border-radius: 60%;
+        z-index: -1;
+    }
+    .toogle-menu{
+        width: 32px;
+        height: 25px;
+    }
+    .nav_toogle_close,
+    .nav_toogle_menu{
+        position: absolute;
+        font-size: 1.15rem;
+    }
+    .nav_toogle_close{
+        opacity: 0;
+    }
+    .tech-profile{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-left: 5.4%;
+        font-family: 'Inter', sans-serif;
+    }
+    .tech-profile img{
+        width: 100px;
+        height: auto;
+        border-radius: 50%;
+        padding: 5px;
+        background-color: rgb(241, 241, 241);
+        border: 1px solid rgb(238, 238, 238);
+        margin-top: -70px;
+    }
+    .tech-profile h3{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .tech-profile p{
+        font-size: 1rem;
+        color: #cbcbcb;
+    }
+    .box-container{
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .boxes{
+        padding: 5%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;    
+    }
+    .box{
+        display: flex;
+        gap: 10px;
+        border: 1px solid white;
+        border-radius: 10px;
+        min-width:150px;
+        width: 100%;
+        padding: 6% 8% ;
+        background-color: white;
+    }
+    .box i{
+        color: #3373ff;
+    }
+    .task-container{
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .task-cards{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 5%;
+    }
+    .task-card{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid white;
+        border-radius: 10px;
+        min-width: 350px;
+        width: 90%;
+        padding: 10px 10px ;
+        background-color: white;
+    }
+    .task-id{
+        display: flex;
+        gap: 10px;
+    }
+    .task-info{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .task-info p{
+        font-size: 1.1rem;
+    }
+    .task-info h4{
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding-right: 10px;
+        border: 1px solid #f4f4f4;
+        border-radius: 20px;
+        padding: 5px 10px;
+        background-color: #f4f4f4;
+    }
+
+    /* Task Detail Styles */
+    .task-detail-body{
+        background-color: #417dff;
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.1rem, 3VW, 3rem);
+    }
+    .task-detail-card{
+        border: 1px solid white;
+        border-radius: 10px;
+        min-width: 350px;
+        width: 100%;
+        margin-top: clamp(20%, 4Vh, 40%);
+        padding: 2% 3% ;
+        background-color: white;
+    }
+    .task-detail-main h2{
+        font-size: clamp(1.1rem, 3VW, 3rem);
+        color: #999999;
+        font-weight: 400;
+        margin-bottom: 2%;
+    }
+    .task-detail-title{
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20px;
+        font-size: clamp(1.1rem, 3VW, 3rem);
+        margin-bottom: 7%;
+    }
+    .task-detail-title p{
+        border: 1px solid #2079ff;
+        background-color: #2079ff;
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+        margin-top: -2%;
+    }
+    .task-detail-start-date{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        margin-bottom: clamp(3%, 3Vh, 15%);
+    }
+    .task-detail-due-date{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        margin-bottom: clamp(3%, 3Vh, 15%);
+    }
+    .task-detail-priority{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        margin-bottom: clamp(3%, 3Vh, 15%);
+    }
+    .task-detail-client{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        margin-bottom: clamp(7%, 3Vh, 20%);
+    }
+    .client-info{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .task-detail-due-date span,
+    .task-detail-start-date span,
+    .task-detail-priority span,
+    .task-detail-client span{
+        color: #999999;
+    }
+    .task-detail-description{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: clamp(1.2rem, 3VW, 3rem);
+        margin-bottom: clamp(5%, 3Vh, 15%);
+    }
+    .task-detail-location{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: clamp(1.2rem, 3VW, 3rem);
+        margin-bottom: clamp(5%, 3Vh, 15%);
+    }
+    .task-detail-description span,
+    .task-detail-location span{
+        font-weight: 600;
+    }
+    .attachment-form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .upload-button{
+        margin-left: clamp(20%,4vw, 50%);
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 10px;
+        width: 200px;
+        font-size: 1.25rem;
+        background-color: #3373ff;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+    /* Login Page */
+    .login-body{
+        background-color: #417dff;
+        font-family: 'Inter', sans-serif;
+    }
+    .login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 10px;
+        background-color: white;
+        min-width: 200px;
+        max-width: 300px;
+        width: 100%;
+        margin: 30% 10%;
+        padding: 3% 12% 5%;
+    }
+    .login h2{
+        font-size: 2rem;
+        font-weight:600;
+        margin-bottom: 20px;
+    }
+    .login-form input{
+        margin-bottom: 20px;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 20px;
+        padding: 20px;
+        font-size: 1rem;
+    }
+    .login-form label{
+        font-size: 1.25rem;
+        padding-left: 10px;
+        padding-bottom: 50px;
+    }
+    .login-form select{
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 20px;
+        padding: 10px;
+        cursor: pointer;    
+    }
+
+    .login-btn{
+        margin-top: 20px;
+        padding: 10px;
+        width: 240px;
+        font-size: 1.25rem;
+        background-color: #3373ff;
+        color: white;
+        cursor: pointer;
+    }
+    .login-btn:hover{
+        border-color: #3373ff;
+    }
+    .login-form input:focus{
+        outline: none;
+    }
+}

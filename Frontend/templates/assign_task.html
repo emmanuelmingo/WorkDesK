@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitel WorkDesk</title>
+    <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="general-body">
+    <div class="layout">
+        <aside class="sidebar">
+            <h2>WorkDesk</h2>
+            <nav class="nav">
+                <ul>
+                    <li>
+                        <i class="ri-dashboard-fill"></i>
+                        <a href="{% url 'admin_dashboard'%}">Dashboard</a>
+                    </li>
+                    <li>
+                        <i class="ri-list-check-3"></i>
+                        <a href="{% url 'task'%}">Tasks</a>
+                    </li>
+                    <li>
+                        <i class="ri-user-fill"></i>
+                        <a href="#">Technicians</a>
+                    </li>
+                    <li>
+                        <i class="ri-article-line"></i>
+                        <a href="#">Reports</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <main class="assign-task-main">
+        <h2>Assign Task</h2>
+        <form action="{% url 'assign_task' %}" method="post" class="assign-task-form">
+            {% csrf_token %}
+            <label for="title">
+                Title <br>
+                <input type="text" name = title required >
+            </label> <br>
+            <label for="description">
+                Description <br>
+                <input class="task-description" type="text" name="description" placeholder="Enter Description of task" required>
+            </label> <br>
+            <label for="technician">
+                Technician <br>
+                <select name="technician" id="technician"  required>
+                    <option value="" disabled selected>Select Technician</option>
+                     {% for tech in technicians%}
+                     <option value="{{tech.name}}">{{tech.name}}</option>
+                     {% endfor %}
+                </select>
+            </label> <br>
+            <div class="assign-task-date">
+                <label for="start-date">
+                    Start Date <br>
+                    <input type="date" name="start-date" required>
+                </label> <br>
+                <label for="due-date">
+                    Due-date <br>
+                    <input type="date" name="due-date" required>
+                </label> <br>
+            </div>
+            <div class="assign-task-btn">
+                <input  type="submit" value="Assign Task" >
+            </div>
+        </form>
+    </main>
+</body>
+</html>
