@@ -74,31 +74,31 @@ def task(request):
 
     if request.method == 'POST':
         technician_name = request.POST.get('technicians')
-        status = request.POST.getlist('filter')
+        priority = request.POST.getlist('priority')
 
-        request.session['filter_status'] = status
+        request.session['filter_priority'] = priority
         request.session['filter_technician'] = technician_name
 
         return redirect('task')  
 
     else:
         
-        status = request.session.get('filter_status', [])
+        priority = request.session.get('filter_priority', '')
         technician_name = request.session.get('filter_technician', '')
 
-        if status:
-            tasks = tasks.filter(status__in=status)
+        if priority:
+            tasks = tasks.filter(priority=priority)
         elif technician_name:
             tasks = tasks.filter(technician_name=technician_name)
     
-    if 'filter_status' in request.session:
-            del request.session['filter_status']
+    if 'filter_priority' in request.session:
+            del request.session['filter_priority']
     if 'filter_technician' in request.session:
             del request.session['filter_technician']
     return render(request, 'task.html', {
         'technicians': technicians,
-        'tasks': tasks
-        , 'admin': admin
+        'tasks': tasks,
+        'admin': admin
     })
 
 def task_detail(request,pk,role):

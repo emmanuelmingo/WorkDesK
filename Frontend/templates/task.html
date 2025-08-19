@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-<body class="general-body">
+<body class="dashboard-body">
+     <header class="header">
+        <h2>Work<span>Desk<i class="ri-circle-fill dot"></i></span></h2>
+        <h3>Tasks</h3>
+    </header>
     <div class="layout">
-        <aside class="sidebar">
-            <h2>WorkDesk</h2>
-            <nav class="nav">
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
                 <ul>
                     <li>
                         <i class="ri-dashboard-fill"></i>
                         <a href="{% url 'admin_dashboard'%}">Dashboard</a>
                     </li>
                     <li>
-                        <i class="ri-list-check-3"></i>
+                        <i class="ri-survey-fill"></i>
                         <a href="{% url 'task'%}">Tasks</a>
                     </li>
                     <li>
@@ -35,55 +38,112 @@
             </nav>
         </aside>
     </div>
-    <main class="task-main">
-        <a href="{% url 'assign_task'%}"> Assign Task</a>
-        <form action="task" method="post" class="task-filter">
-            {% csrf_token %}
-            <label ><input type="checkbox" name="filter" value="Not started" >Not started</label>
-            <label ><input type="checkbox" name="filter" value="In-progess" >In-progress</label>
-            <label ><input type="checkbox" name="filter" value="Completed" >Completed</label>
-            <label>
-                Select Technicians
-                <select name="technicians" >
-                    <option value="" selected disabled>All Technicians</option>
-                    {% for tech in technicians%}
-                    <option value="{{tech.name}}" >{{tech.name}}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            <input type="submit" value="Filter" class="filter-btn">
-        </form>
-        <h2>Task History</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Task_id</th>
-                    <th>Title</th>
-                    <th>Technician name</th>
-                    <th>Status</th>
-                    <th>Start Date</th>
-                    <th>Due Date</th>
-                </tr>
-            </thead>
-           <tbody>
-                {% if tasks %}
-                    {% for task in tasks %}
-                    <tr onclick="window.location.href='{% url 'task_detail' task.pk admin.role %}';" style="cursor: pointer;">
-                        <td>{{ task.task_id }}</td>
-                        <td>{{ task.title }}</td>
-                        <td>{{ task.technician_name }}</td>
-                        <td class="status {{ task.status|lower|slugify }}">{{ task.status }}</td>
-                        <td>{{ task.start_date }}</td>
-                        <td>{{ task.due_date }}</td>
-                    </tr> 
-                    {% endfor %}
-                {% else %}
-                    <tr>
-                        <td colspan="6" style="text-align: center;">No task given</td>
-                    </tr>
-                {% endif %}
-            </tbody>
-        </table>
+    <main class="dashboard-main">
+        <div class="task-container">
+            <div class="task-header">
+                <h3> Task Board [2025] ⭐</h3>
+                <div class="task-selection">
+                    <div class="new-task" onclick="location.href='{% url 'assign_task' %}'">
+                        <i class="ri-add-line"></i>
+                        <span>Add Task</span>
+                    </div>
+                    <div class="task-filter">
+                        <form action="{% url 'task'%}" method="post" class="filter-form">
+                            {% csrf_token %}
+                            <select name="technicians">
+                                <option value="" disabled selected>Select Technician</option>
+                                {% for technician in technicians %}
+                                    <option value="{{ technician.name}}">
+                                        {{ technician.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <select name="priority" >
+                                <option value="" disabled selected>Select Priority</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <input type="submit" value="Filter" class="filter-button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="task-body">
+                <div class="task-box">
+                    <div class="task-cards">
+                        <div class="task-card-title">
+                            <i class="ri-circle-fill backlog"></i>
+                            <h4>Backlog</h4>
+                        </div>
+                        {% for task in tasks %}
+                            {% if task.status == 'Not started' %}
+                            <div class="task-card">
+                                <p>{{ task.title }}</p>
+                                <div class="task-card-footer">
+                                    <div class="task-card-technician">
+                                        <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                                        <span class="technician">{{ task.technician_name|truncatewords:1}}</span>
+                                    </div>
+                                    <div class="task-card-details">
+                                        <span class="priority">{{ task.priority }}</span>
+                                        <span class="date">{{ task.due_date|date:"M d" }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="task-cards">
+                        <div class="task-card-title">
+                            <i class="ri-circle-fill in-progress"></i>
+                            <h4> In Progress</h4>
+                        </div>
+                        {% for task in tasks %}
+                            {% if task.status == 'In progress' %}
+                            <div class="task-card">
+                                <p>{{ task.title }}</p>
+                                <div class="task-card-footer">
+                                    <div class="task-card-technician">
+                                        <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                                        <span class="technician">{{ task.technician_name|truncatewords:1}}</span>
+                                    </div>
+                                    <div class="task-card-details">
+                                        <span class="priority">{{ task.priority }}</span>
+                                        <span class="date">{{ task.due_date|date:"M d" }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="task-cards">
+                        <div class="task-card-title">
+                            <i class="ri-circle-fill completed"></i>
+                            <h4>Completed</h4>
+                        </div>
+                        {% for task in tasks %}
+                            {% if task.status == 'Completed' %}
+                            <div class="task-card">
+                                <p>{{ task.title }}</p>
+                                <div class="task-card-footer">
+                                    <div class="task-card-technician">
+                                        <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                                        <span class="technician">{{ task.technician_name|truncatewords:1}}</span>
+                                    </div>
+                                    <div class="task-card-details">
+                                        <span class="priority">{{ task.priority }}</span>
+                                        <span class="date">{{ task.due_date|date:"M d" }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </main>
 </body>
 </html>
