@@ -43,7 +43,7 @@
             <div class="task-header">
                 <h3> Task Board [2025] ⭐</h3>
                 <div class="task-selection">
-                    <div class="new-task" onclick="location.href='{% url 'assign_task' %}'">
+                    <div class="new-task" onclick="openModal()">
                         <i class="ri-add-line"></i>
                         <span>Add Task</span>
                     </div>
@@ -78,7 +78,7 @@
                         </div>
                         {% for task in tasks %}
                             {% if task.status == 'Not started' %}
-                            <div class="task-card">
+                            <div class="task-card" style="cursor: pointer;" onclick="location.href='{% url 'task_detail' task.task_id admin.role %}'">
                                 <p>{{ task.title }}</p>
                                 <div class="task-card-footer">
                                     <div class="task-card-technician">
@@ -101,7 +101,7 @@
                         </div>
                         {% for task in tasks %}
                             {% if task.status == 'In progress' %}
-                            <div class="task-card">
+                            <div class="task-card" style="cursor: pointer;" onclick="location.href='{% url 'task_detail' task.task_id admin.role %}'">
                                 <p>{{ task.title }}</p>
                                 <div class="task-card-footer">
                                     <div class="task-card-technician">
@@ -124,7 +124,7 @@
                         </div>
                         {% for task in tasks %}
                             {% if task.status == 'Completed' %}
-                            <div class="task-card">
+                            <div class="task-card" style="cursor: pointer;" onclick="location.href='{% url 'task_detail' task.task_id admin.role %}'">
                                 <p>{{ task.title }}</p>
                                 <div class="task-card-footer">
                                     <div class="task-card-technician">
@@ -144,6 +144,46 @@
 
             </div>
         </div>
+        <div id="modal" class="modal-overlay">
+            <div class="modal-box">
+                <i class="ri-close-fill" onclick="closeModal()"></i>
+                <h2>Create Task</h2>
+                <form action="{% url 'assign_task' %}" method="post" class="task-form">
+                    {% csrf_token %}
+                    <label for="title">Task Title</label><br>
+                    <input type="text" name="title" id="title" required><br>
+                    <div class="task-priority">
+                        <div>
+                            <label for="priority">Task Priority</label><br>
+                            <select name="priority" id="priority" required>
+                                <option value="" disabled selected>Select Priority</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select><br>
+                        </div>
+                        <div>
+                            <label for="due_date">Due Date</label><br>
+                            <input type="date" name="due_date"  required><br>
+                        </div>
+                    </div>
+                    <label for="technician">Assign Technician:</label><br>
+                    <select name="technician" id="technician" required>
+                        <option value="" disabled selected>Select Technician</option>
+                        {% for technician in technicians %}
+                            <option value="{{ technician.name }}">{{ technician.name }}</option>
+                        {% endfor %}
+                    </select><br>
+
+                    <label for="description">Task Description</label><br>
+                    <textarea name="description" id="description" placeholder="Task description" required></textarea><br>
+                    <div class="task-submit">
+                        <input type="submit" value="Create Task">
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
+    <script src="{% static 'js/modal.js' %}"></script>
 </body>
 </html>

@@ -74,7 +74,7 @@ def task(request):
 
     if request.method == 'POST':
         technician_name = request.POST.get('technicians')
-        priority = request.POST.getlist('priority')
+        priority = request.POST.get('priority')
 
         request.session['filter_priority'] = priority
         request.session['filter_technician'] = technician_name
@@ -129,12 +129,13 @@ def assign_task(request):
          title = request.POST['title']
          description = request.POST['description']
          technician_name = request.POST.get('technician')
-         start_date = request.POST['start-date']
-         due_date = request.POST['due-date']
+         priority = request.POST.get('priority')
+         due_date = request.POST['due_date']
+         created_at = date.today()
 
-         date_obj = datetime.strptime(start_date, "%Y-%m-%d").date()
+         date_obj = datetime.strptime(due_date, '%Y-%m-%d').date()
 
-         if not title or not description or not technician_name or not start_date or not due_date:
+         if not title or not description or not technician_name or not priority or not due_date:
              messages.error(request,'All fields required')
              return redirect('assign_task')
          else:
@@ -146,17 +147,15 @@ def assign_task(request):
                      title = title,
                      description = description,
                      technician_name = technician_name,
-                     start_date = start_date,
-                     due_date = due_date
+                     priority = priority,
+                     due_date = due_date,
+                     created_at = created_at
                  )
                  
                  task.save()
                  messages.success(request, "Task successfully registered")
                  return redirect('task')
-    else:
-        technicians = Technicians.objects.all()
-        return render(request, 'assign_task.html' , {'technicians':technicians})
-    
+             
 def technicians(request):
     technicians = Technicians.objects.all()
     return render(request, 'technician.html', {'technicians':technicians})
