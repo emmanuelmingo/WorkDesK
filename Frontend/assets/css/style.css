@@ -13,36 +13,38 @@
 @media screen and (min-width:1360px) {
     /* Login Page */
     .login-body{
-        background-color: #417dff;
+        background-color: white;
         font-family: 'Inter', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5% 2%;
     }
     .login{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        border: 1px solid rgb(213, 213, 213);
-        border-radius: 10px;
-        background-color: white;
-        width: 20%;
-        margin: 7% 40%;
-        padding: 3% 12% 5%;
+        align-items: flex-start;
+        padding: 9.5% 15%;
     }
     .login h2{
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight:600;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
     .login-form input{
+        margin-top: -10px;
         margin-bottom: 20px;
         border: 1px solid rgb(213, 213, 213);
-        border-radius: 20px;
+        border-radius: 15px;
         padding: 20px;
         font-size: 1rem;
+        width: 400px;
+    }
+    .login-form input:focus{
+        outline: rgb(28, 81, 255) solid 1px;
     }
     .login-form label{
-        font-size: 1.25rem;
-        padding-left: 10px;
-        padding-bottom: 50px;
+        font-size: 1rem;
+        display: block;
     }
     .login-form select{
         border: 1px solid rgb(213, 213, 213);
@@ -51,20 +53,44 @@
         cursor: pointer;    
     }
 
-    .login-btn{
+    .login-btn input{
         margin-top: 20px;
         padding: 10px;
-        width: 240px;
+        width: 140px;
         font-size: 1.25rem;
         background-color: #3373ff;
+        border-radius: 10px;
         color: white;
         cursor: pointer;
     }
     .login-btn:hover{
         border-color: #3373ff;
     }
-    .login-form input:focus{
-        outline: none;
+    .login-footer{
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 20px;
+        background-color: color-mix(in srgb, #001eff, transparent 27%);
+        width: 500px;
+        height: 700px;
+        display: flex;
+        color: white;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 20px 50px;
+    }
+    .login-footer p,
+    .login-footer h2{
+        margin-bottom: 48%;
+    }
+    .login-footer p{
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-right: 30px;
+    }
+    .login-footer h2{
+        font-size: 2.25rem;
+        font-weight: 600;
+        width: 200px;
     }
 
     /* Messeges Styles */
@@ -371,10 +397,7 @@
         font-size: 1.5rem;
         cursor: pointer;
         align-self: flex-end;
-        border: 1px solid rgb(221, 221, 221);
-        border-radius: 45%;
         padding: 1px;
-        background-color: #eaeaea;
     }
     .modal-box h2{
         font-size: 1.5rem;

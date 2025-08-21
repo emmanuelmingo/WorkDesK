@@ -14,23 +14,33 @@
         <div class="alert">{{ message }}</div>
     {% endfor %}
     <div class="login">
-        <h2>LOGIN</h2>
+        <h2>Welcome Back</h2>
         <form class="login-form" action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <label>
-                Email<input type="email" name="email" id="email" placeholder="EMAIL" required>
+                Email
             </label><br>
+            <input type="email" name="email" id="email" placeholder="EMAIL" required><br>
             <label >
-                Password<input type="password" name="password" id="password" placeholder="PASSWORD" required>
+                Password
             </label><br>
-            <label for="role">Select Role:</label>
-            <select name="role" id="role" required>
-                <option value="" disabled selected>Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="technician">Technician</option>
-            </select><br>
-            <input class="login-btn" type="submit" value="Login">
+            <input type="password" name="password" id="password" placeholder="PASSWORD" required><br>
+            <label for="role">Select Role:
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="technician">Technician</option>
+                </select><br>
+            </label>
+            <div class="login-btn">
+                <input type="submit" value="Login">
+            </div>
         </form>
+    </div>
+    <div class="login-footer">
+        <p>WorkDesk</p>
+        <h2>Take your productivity to the next level</h2>
+        <span>Copyright 2025 | All right Reserverd</span>
     </div>
     <script src="{% static 'js/message.js' %}"></script>
 </body>
