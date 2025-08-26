@@ -58,7 +58,7 @@
         padding: 10px;
         width: 140px;
         font-size: 1.25rem;
-        background-color: #3373ff;
+        background-color: color-mix(in srgb, #001eff, transparent 27%);;
         border-radius: 10px;
         color: white;
         cursor: pointer;
@@ -137,6 +137,24 @@
     }
 
     /*HEADER STYLES */
+    .dashboard-header{
+        height: 50px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        gap: 80px;
+        padding-left:3%;
+        background-color: white;
+    }
+    .dashboard-header h2{
+        color: black;
+        font-size: 2rem;
+        padding-top: 0.7%;
+    }
+    .dashboard-header h2 span{
+        color: #276cff;
+    }
     .header{
         height: 90px;
         left: 0;
@@ -214,8 +232,22 @@
         width: auto;
         border: 1px solid rgb(255, 249, 255);
         border-top-left-radius: 30px;
-        background-color: color-mix(in srgb, #5d57f4, transparent 95%);
+        background-color: color-mix(in srgb, #747474, transparent 97%);
         padding: 20px;
+    }
+    .time{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .time h1{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    .time span{
+        font-size: 1rem;
+        font-weight: 600;
     }
     .box-container{
         display: flex;
@@ -226,22 +258,114 @@
     }
     .box{
         display: flex;
-        align-items: center;
-        gap: 10px;
+        flex-direction: column;
+        gap: 30px;
         border: 1px solid white;
-        border-radius: 5px;
-        max-width:400px;
+        border-radius: 15px;
         width: 100%;
         padding: 15px 20px ;
         background-color: white;
     }
+    .text{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .text h1{
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
     .icon{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: space-between;
+    }
+    .icon i{
+        color: #3373ff;
+        font-size: 1.25rem;
+        border: 1px solid white;
+        background-color: color-mix(in srgb, #5d57f4, transparent 95%);
+        border-radius: 15px;
+        padding: 20px;
+    }
+    .task-todo{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    .todo{
+        border: 1px solid white;
+        border-radius: 15px;
+        width: 30%;
+        padding: 10px 20px;
+        background-color: white;
+    }
+    .todo h2{
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .todo-list ul li{
+        list-style: none;
+        margin-bottom: 10px;
+        border: 1px solid white;
+        background-color: rgb(242, 242, 242);
+        padding: 5px 10px;
+        border-radius: 12px;
+        
+    }
+    .todo-list p{
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px 1px;
+    }
+    .todo-list p:hover{
+        background-color: #e0edff;
+        cursor: pointer;
+    }
+    .add-task-form{
+        border: 2px solid #e0edff;
+        border-radius: 10px;
+        padding: 16px;
+        background: #fff;
+        position: relative;
+        margin-top: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .add-task-form textarea{
+        width: 100%;
+        min-height: 50px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        padding: 8px;
+        resize: vertical;
+        font-size: 1rem;
+    }
+    .add-task-form textarea:focus{
+        outline: none;
+    }
+    .close-todo{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .close-todo input{
+        background: #276cff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    .close-todo span{
         font-size: 1.5rem;
-        border: 1px solid;
-        border-radius: 48%;
-        padding: 9px;
-        background-color: #3373ff;
-        color: white;
+        cursor: pointer;
     }
 
     /* Task Container Styles */

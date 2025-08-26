@@ -8,9 +8,10 @@
     <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body class="dashboard-body">
-    <header class="header">
+    <header class="dashboard-header">
         <h2>Work<span>Desk<i class="ri-circle-fill dot"></i></span></h2>
     </header>
     <div class="layout">
@@ -38,49 +39,105 @@
         </aside>
     </div>
     <main class="dashboard-main">
+        <section class="time">
+            <h1>Today</h1>
+            <span>{{date_today}} | {{time_today}}</span>
+        </section>
         <section>
             <div class="box-container">
                 <div class="box">
-                    <div class="icon">
-                        <i class="ri-bill-fill"></i>
-                    </div>
                     <div class="text">
-                        <h4>15</h4>
-                        <p>Open Task</p>
+                        <h1>Total Task</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if total_tasks %}
+                            <h2>{{ total_tasks }}</h2>
+                            <i class="fa-solid fa-folder"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="fa-solid fa-folder"></i>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="box">
-                    <div class="icon">
-                        <i class="ri-time-fill"></i>
-                    </div>
                     <div class="text">
-                        <h4>15</h4>
-                        <p>Pending</p>
+                        <h1>Completed</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if completed_tasks %}
+                            <h2>{{ completed_tasks }}</h2>
+                            <i class="fa-solid fa-check"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="fa-solid fa-check"></i>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="box">
-                    <div class="icon">
-                        <i class="ri-play-mini-fill"></i>
-                    </div>
                     <div class="text">
-                        <h4>15</h4>
-                        <p>In-progess</p>
+                        <h1>In-progess</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if in_progress_tasks %}
+                            <h2>{{ in_progress_tasks }}</h2>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="box">
-                    <div class="icon">
-                        <i class="ri-check-line"></i>
-                    </div>
                     <div class="text">
-                        <h4>15</h4>
-                        <p>Completed</p>
+                        <h1>Backlog</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if backlog_tasks %}
+                            <h2>{{ backlog_tasks }}</h2>
+                            <i class="fa-solid fa-bars-progress"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="fa-solid fa-bars-progress"></i>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h2>Task List</h2>
+        <section class="task-todo">
+            <div class="recent-task">
+                <h2>Recent Task</h2>
+            </div>
+            <div class="todo">
+                <h2>To Do</h2>
+                <div class="todo-list">
+                    {% if todo %}
+                        <ul>
+                            {% for item in todo %}
+                                <li>{{ item.description|linebreaksbr }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <p id="add-task-trigger" class="add-task-trigger">
+                        <i class="ri-add-line"></i> <span>Add Card</span>
+                    </p>
+                    <div id="add-task-form" class="add-task-form" style="display:none;">
+                        <form method="post" action="{% url 'add_todo' %}">
+                            {% csrf_token %}
+                            <textarea name="description" placeholder="Enter description" required></textarea>
+                            <div class="close-todo">
+                                <input type="submit" value="Add Card">
+                                <span class="close-add-task" onclick="closeAddTaskForm()">&times;</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+    <script src="{% static 'js/todo.js' %}"></script>
 </body>
 </html>

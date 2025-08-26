@@ -15,6 +15,9 @@ class Technicians(models.Model):
     contact = models.CharField(default="123-456-7890")
     role = models.CharField(max_length=100, default='technician')
 
+class Todo(models.Model):
+    description = models.CharField(max_length=10000)
+
 class Task(models.Model):
     task_id = models.CharField(max_length=10, unique=True, primary_key=True, blank= True)
     title = models.CharField(max_length=500)

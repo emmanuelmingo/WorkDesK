@@ -9,4 +9,5 @@ urlpatterns = [
     path('assign_task', views.assign_task, name='assign_task'),
     path('task/<str:pk>/<str:role>', views.task_detail, name='task_detail'),
     path('technicians', views.technicians, name='technicians'),
+    path('add_todo', views.add_todo, name='add_todo'),
 ]

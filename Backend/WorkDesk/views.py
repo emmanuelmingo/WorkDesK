@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Admin,Technicians,Task
+from .models import Admin,Technicians,Task,Todo
 from django.contrib import messages
 from datetime import date,datetime
 
@@ -54,7 +54,24 @@ def admin_dashboard(request):
         messages.info(request, "Session expired. Please log in again.")
         return redirect('login')
     else:
-        return render(request, 'index.html')
+        todo = Todo.objects.all()
+        total_tasks = Task.objects.count()
+        completed_tasks = Task.objects.filter(status='Completed').count()
+        in_progress_tasks = Task.objects.filter(status='In progress').count()
+        backlog_tasks = Task.objects.filter(status='Not started').count()
+        date_today = date.today()
+        time_today = datetime.now().time()
+        context={
+            'total_tasks':total_tasks,
+            'completed_tasks':completed_tasks,
+            'in_progress_tasks':in_progress_tasks,
+            'backlog_tasks':backlog_tasks,
+            'date_today':date_today.strftime("%b %d, %Y"),
+            'time_today':time_today.strftime("%H:%M %p"),
+            'todo':todo
+        }
+
+        return render(request, 'index.html', context)
 
 def technician_dashboard(request):
     if 'technician_id' not in request.session:
@@ -159,3 +176,13 @@ def assign_task(request):
 def technicians(request):
     technicians = Technicians.objects.all()
     return render(request, 'technician.html', {'technicians':technicians})
+def add_todo(request):
+    if request.method == 'POST':
+        description = request.POST.get('description')
+        if description:
+            todo = Todo.objects.create(description=description)
+            todo.save()
+            messages.success(request, "To-do item added successfully.")
+        else:
+            messages.error(request, "Description cannot be empty.")
+    return redirect('admin_dashboard')
