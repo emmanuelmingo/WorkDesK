@@ -175,7 +175,17 @@ def assign_task(request):
              
 def technicians(request):
     technicians = Technicians.objects.all()
-    return render(request, 'technician.html', {'technicians':technicians})
+    total_technicians = Technicians.objects.count()
+    available_technicians = Technicians.objects.filter(status='available').count()
+    unavailable_technicians = Technicians.objects.filter(status='unavailable').count()
+    context ={
+        'technicians':technicians,
+        'total_technicians':total_technicians,
+        'available_technicians':available_technicians,
+        'unavailable_technicians':unavailable_technicians
+    }
+    return render(request, 'technician.html', context)
+
 def add_todo(request):
     if request.method == 'POST':
         description = request.POST.get('description')

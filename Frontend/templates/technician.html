@@ -8,12 +8,15 @@
     <link href="{% static 'header icons/servitel-logo.png'  %}" rel="icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="general-body">
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <h2>Work<span>Desk<i class="ri-circle-fill dot"></i></span></h2>
+    </header>
     <div class="layout">
-        <aside class="sidebar">
-            <h2>WorkDesk</h2>
-            <nav class="nav">
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
                 <ul>
                     <li>
                         <i class="ri-dashboard-fill"></i>
@@ -35,30 +38,80 @@
             </nav>
         </aside>
     </div>
-    <main class="technicians-main">
-        <div class="cards">
-            {% for tech in technicians %}
-            <div class="card">
-                <div class="card-info">
-                    <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
-                    <div>
-                        <p>{{tech.name}}</p>
-                        <p>{{tech.role}}</p>
+    <main class="dashboard-main">
+        <section>
+            <div class="box-container">
+                <div class="box">
+                    <div class="text">
+                        <h1>Total Technicians</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if total_technicians %}
+                            <h2>{{ total_technicians }}</h2>
+                            <i class="ri-team-fill"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="ri-team-fill"></i>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="card-fill">
-                    <div class="card-contact">
-                        <i class="ri-phone-fill"></i>
-                        <p>{{tech.contact}}</p>
+                <div class="box">
+                    <div class="text">
+                        <h1>Available Technicians</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </div>
-                    <div class="card-status">
-                        <i class="ri-sun-fill"></i>
-                        <p>{{tech.status}}</p>
+                    <div class="icon">
+                        {% if available_technicians %}
+                            <h2>{{ available_technicians }}</h2>
+                            <i class="ri-user-follow-fill"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="ri-user-follow-fill"></i>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="text">
+                        <h1>Unavailable Technicians</h1>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                    <div class="icon">
+                        {% if unavailable_technicians %}
+                            <h2>{{ unavailable_technicians }}</h2>
+                            <i class="ri-user-unfollow-fill"></i>
+                        {% else %}
+                            <h2>0</h2>
+                            <i class="ri-user-unfollow-fill"></i>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
+        </section>
+        <section>
+            <div class="technician-container">
+                {% for technicians in technicians %}
+                <div class="technicians">
+                    <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                    <h4>{{technicians.name}}</h4>
+                    <p>Profession</p>
+                    <h3>{{technicians.role}}</h3>
+                    <p>Email</p>
+                    <h3>{{technicians.email}}</h3>
+                    <p>Phone</p>
+                    <h3>{{technicians.contact}}</h3>
+                    <div class="status-indicator-wrapper">
+                        <span>{{technicians.status}}</span>
+                        {% if technicians.status == "available" %}
+                            <span class="status-ball available"></span>
+                        {% else %}
+                            <span class="status-ball unavailable"></span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
     </main>
 </body>
 </html>
