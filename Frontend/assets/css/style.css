@@ -573,127 +573,113 @@
     }
 
     /* Task Detail Styles */
-    .task-detail-body{
-        background-color: #f7f7f7;
-        font-family: 'Inter', sans-serif;
+    .task-detail-container{
+        padding: 30px 60px;
+    }
+    .task-detail-edit{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .task-detail-edit i{
+        font-size: 1.25rem;
+        color: #999999;
+        cursor: pointer;
     }
     .task-detail-header{
-        height: 75px;
-        background-color: white;
         display: flex;
+        gap: 20px;
         align-items: center;
-    }
-    .task-detail-header h2{
-        padding: 20px 150px;
-        font-size: 2rem;
-        color: #3373ff;
-    }
-
-    .task-detail-main{
-        padding-left: 140px;
-    }
-    .task-detail-main h2{
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding-left: 10px;
-    }
-
-    .task-detail-icon{
-        display: flex;
-        align-items: center;
-        gap: 40px;
         margin-bottom: 20px;
     }
-    .task-detail-icon img{
-        border-radius: 50%;
-        background-color: rgb(251, 251, 251);
-        width: 125px;
+    .task-detail-header i{
+        font-size: 5rem;
+        color: color-mix(in srgb, rgb(0, 255, 128), transparent 10%);
     }
-    .task-detail-icon p{
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-    .task-detail-status{
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        padding-left: 10px;
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-    }  
-    .task-detail-status span{
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-    .status-container{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border: 1px solid rgb(238, 238, 238);
-        border-radius: 20px;
-        background-color: rgb(238, 238, 238);
-        padding: 5px 15px;
-    }
-    .status-container i{
-        color: rgb(175, 175, 175);
-    }
-    .task-detail-description{
+    .task-detail-title{
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    .task-detail-description span{
-        padding-left: 10px;
-        font-size: 1.25rem;
-        font-weight: 600;
+    .task-detail-title h4{
+        color: #999999;
     }
-    .task-detail-description p{
+    .task-detail-status{
         padding-left: 10px;
-        font-size: 1.25rem;
-        margin-bottom: 10px;
-    }
-    .task-detail-title{
         display: flex;
-        gap: 10px;
+        gap: 100px;
+        margin-bottom: 20px;
     }
-    .task-detail-title span{
-        padding-left: 10px;
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-    .task-detail-title p{
-        padding-left: 10px;
-        font-size: 1.25rem;
+    .task-detail-status p{
         margin-bottom: 10px;
+        color: #999999;
+    }
+    .task-detail-status span{
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .task-detail-stat span{
+        border: 1px solid white;
+        background-color: color-mix(in srgb, rgb(21, 108, 169), transparent 95%);
+        padding: 10px 7px;
+        border-radius: 10px;
     }
     .task-detail-date{
-        display: flex;
-        align-items: center;
         padding-left: 10px;
-        gap: 150px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
-    .start-date,
-    .due-date{
+    .task-detail-date p{
+        margin-bottom: 5px;
+        color: #999999;
+    }
+    .task-detail-date span{
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .task-detail-location{
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+    .task-detail-location p{
+        margin-bottom: 5px;
+        color: #999999;
+    }
+    .task-detail-location span{
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .task-detail-body{
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+    .task-detail-body p{
+        margin-bottom: 5px;
+        color: #999999;
+    }
+    .task-detail-body span{
+        font-weight: 400;
+        font-size: 1.1rem;
+    }
+    .task-detail-attachment{
+        padding-left: 10px;
+    }
+    .task-detail-attachment p {
+        margin-bottom: 10px;
+        color: #999999;
+    }
+    .no-attachment{
         display: flex;
         align-items: center;
         gap: 20px;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 10px 20px;
+        box-shadow: 0px 0px 2px 2px rgb(225, 225, 225);
     }
-    .start-date span,
-    .due-date span{
-        font-size: 1.25rem;
-        font-weight: 600;
+    .no-attachment i{
+        font-size: 1.5rem;
     }
-    .start-date p,
-    .due-date p{
-        font-size: 1.25rem;
-    }
-    .task-detail-attachments{
-        padding-left: 10px;
-    }
-    .task-detail-attachments span{
-        font-size: 1.25rem;
-        font-weight: 600;
+    .no-attachment p{
+        color: #999999;
     }
 
     /* Technician Page Styles */

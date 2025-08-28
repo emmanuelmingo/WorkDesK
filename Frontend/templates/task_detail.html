@@ -9,49 +9,85 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-<body class="task-detail-body">
-    <header class="task-detail-header">
-        <h2> WorkDesk</h2>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <h2>Work<span>Desk<i class="ri-circle-fill dot"></i></span></h2>
     </header>
-    <main class="task-detail-main">
-        <div class="task-detail-card">
-            <h2>
-                Task {{task.task_id}}
-            </h2>
-            <div class="task-detail-icon">
-                <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
-                <p>
-                    {{task.technician_name}}
-                </p>
-            </div>
-            <div class="task-detail-status">
-                <span>Status:</span>
-                <div class="status-container">
-                    <i class="ri-time-fill"></i>
-                    <p>{{task.status}}</p>
+    <div class="layout">
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <ul>
+                    <li>
+                        <i class="ri-dashboard-fill"></i>
+                        <a href="{% url 'admin_dashboard'%}">Dashboard</a>
+                    </li>
+                    <li>
+                        <i class="ri-list-check-3"></i>
+                        <a href="{% url 'task'%}">Tasks</a>
+                    </li>
+                    <li>
+                        <i class="ri-user-fill"></i>
+                        <a href="{% url 'technicians'%}">Technicians</a>
+                    </li>
+                    <li>
+                        <i class="ri-article-line"></i>
+                        <a href="#">Reports</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <main class="dashboard-main">
+        <div class="task-detail-container">
+            <section class="task-detail-edit">
+                <i class="ri-edit-box-line "></i>
+            </section>
+            <section>
+                <div class="task-detail-header">
+                    <i class="ri-shield-check-fill"></i>
+                    <div class="task-detail-title">
+                        <h2>{{task.title}}</h2>
+                        <h4>{{task.task_id}}</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="task-detail-date">
-                <div class="start-date">
-                    <span> Start Date:</span>
-                    <p>{{task.start_date}}</p>
+            </section>
+            <section>
+                <div class="task-detail-status">
+                    <div class="task-detail-stat">
+                        <p>Status</p>
+                        <span>{{task.status}}</span>
+                    </div>
+                    <div>
+                        <p>Assignee</p>
+                        <span>{{task.technician_name}}</span>
+                    </div>
                 </div>
-                <div class="due-date">
-                    <span>Due Date:</span>
-                    <p>{{task.due_date}}</p>
+            </section>
+            <section>
+                <div class="task-detail-date">
+                    <p>Due Date</p>
+                    <span>{{task.due_date}}</span>
                 </div>
-            </div>
-            <div class="task-detail-title">
-                <span> Title: </span>
-                <p>{{task.title}}</p>
-            </div>
-            <div class="task-detail-description">
-                <span> Description </span>
-                <p>{{task.description}}</p>
-            </div>
-            <div class="task-detail-attachments">
-                <span> Attachments</span>
-            </div>
+                <div class="task-detail-location">
+                    <p>Location</p>
+                    <span>SGC Bonanjo</span>
+                </div>
+                <div class="task-detail-body">
+                    <p>Description</p>
+                    <span>{{task.description}}</span>
+                </div>
+                <div class="task-detail-attachment">
+                    <p>Attachments</p>
+                    {% if task.file%}
+                        <span>hey</span>
+                    {% else %}
+                         <div class="no-attachment">
+                            <i class="ri-file-list-3-line"></i>
+                            <p>No attachments yet</p>
+                         </div>
+                    {% endif %}
+                </div>
+            </section>
         </div>
     </main>
 </body>
