@@ -293,8 +293,54 @@
     }
     .task-todo{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
+        gap: 50px;
         padding: 20px;
+    }
+    .recent-task{
+        border: 1px solid white;
+        border-radius: 15px;
+        background-color: white;
+        padding: 10px 30px;
+        height: 100%;
+        max-height: 350px;
+        overflow-y: auto;
+    }
+    .recent-task h2{
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .unav-tech{
+        border: 1px solid white;
+        border-radius: 15px;
+        background-color: white;
+        padding: 15px 20px;
+        margin-left: -10px;
+        width: 30%;
+        height: 100%;
+        max-height: 350px;
+    }
+    .unav-tech h2{
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+        text-wrap: nowrap;
+    }
+    .unav{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid white;
+        border-radius: 5px;
+        background-color: rgb(242, 242, 242);
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .unav img{
+        width: 30px;
+        border: 1px solid rgb(242, 242, 242);
+        border-radius: 50%;
     }
     .todo{
         border: 1px solid white;
@@ -302,6 +348,8 @@
         width: 30%;
         padding: 10px 20px;
         background-color: white;
+        height: 100%;
+        max-height: 350px;
     }
     .todo h2{
         font-size: 1.25rem;
@@ -427,6 +475,8 @@
         border: 1px solid white;
         background-color: white;
         padding: 30px 30px;
+        height: 100%;
+        max-height: 480px;
     }
     .task-box {
         display: grid;
@@ -466,6 +516,7 @@
         border-radius: 5px;
         padding: 10px 15px;
         margin-bottom: 20px;
+        overflow-y: auto;
     }
     .task-card-footer{
         display: flex;

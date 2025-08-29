@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Admin,Technicians,Task,Todo
 from django.contrib import messages
 from datetime import date,datetime
+import random
 
 # Create your views here.
 def login(request):
@@ -54,14 +55,24 @@ def admin_dashboard(request):
         messages.info(request, "Session expired. Please log in again.")
         return redirect('login')
     else:
+        admin_id = request.session.get('admin_id')
+        admin = Admin.objects.filter(id=admin_id).get()
+        technicians = Technicians.objects.all()
         todo = Todo.objects.all()
+        tasks = list(Task.objects.all())
         total_tasks = Task.objects.count()
         completed_tasks = Task.objects.filter(status='Completed').count()
         in_progress_tasks = Task.objects.filter(status='In progress').count()
         backlog_tasks = Task.objects.filter(status='Not started').count()
         date_today = date.today()
         time_today = datetime.now().time()
+
+        random_tasks = random.sample(tasks, min(4, len(tasks)))
+
         context={
+            'technicians':technicians,
+            'tasks': random_tasks,
+            'admin': admin,
             'total_tasks':total_tasks,
             'completed_tasks':completed_tasks,
             'in_progress_tasks':in_progress_tasks,

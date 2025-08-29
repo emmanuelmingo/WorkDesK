@@ -110,6 +110,21 @@
         <section class="task-todo">
             <div class="recent-task">
                 <h2>Recent Task</h2>
+                {% for task in tasks %}
+                    <div class="task-card" style="cursor: pointer;" onclick="location.href='{% url 'task_detail' task.task_id admin.role %}'">
+                        <p>{{ task.title }}</p>
+                        <div class="task-card-footer">
+                            <div class="task-card-technician">
+                                <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                                <span class="technician">{{ task.technician_name|truncatewords:1}}</span>
+                            </div>
+                            <div class="task-card-details">
+                                <span class="priority">{{ task.priority }}</span>
+                                <span class="date">{{ task.due_date|date:"M d" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
             <div class="todo">
                 <h2>To Do</h2>
@@ -135,6 +150,21 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="unav-tech">
+                <h2>Unavailable Technicians</h2>
+                {% if technician.status == 'unavailable' %}
+                    {% for technician in technicians %}
+                        <div class="unav">
+                            <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                            <p>{{technician.name}}</p>
+                        </div>
+                     {% endfor %}
+                {% else %}
+                    <div class="unav">
+                        <p>All technicians are available</p>
+                    </div>
+                {% endif %}
             </div>
         </section>
     </main>
