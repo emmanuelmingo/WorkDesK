@@ -358,12 +358,18 @@
     }
     .todo-list ul li{
         list-style: none;
+    }
+    .todo-delete{
+        display: flex;
+        justify-content: space-between;
         margin-bottom: 10px;
         border: 1px solid white;
         background-color: rgb(242, 242, 242);
         padding: 5px 10px;
         border-radius: 12px;
-        
+    }
+    .todo-delete i{
+        color: #999999;
     }
     .todo-list p{
         border: 1px solid white;
@@ -630,6 +636,7 @@
     .task-detail-edit{
         display: flex;
         justify-content: flex-end;
+        gap: 20px;
     }
     .task-detail-edit i{
         font-size: 1.25rem;

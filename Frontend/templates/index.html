@@ -132,7 +132,13 @@
                     {% if todo %}
                         <ul>
                             {% for item in todo %}
+                            <div class="todo-delete">
                                 <li>{{ item.description|linebreaksbr }}</li>
+                                <div>
+                                    <i class="ri-edit-box-line " style="cursor: pointer;"></i>
+                                    <i class="ri-delete-bin-line" onclick="window.location.href='{% url 'delete_todo' item.id %}'" style="cursor: pointer;"></i>
+                                </div>
+                            </div>
                             {% endfor %}
                         </ul>
                     {% endif %}

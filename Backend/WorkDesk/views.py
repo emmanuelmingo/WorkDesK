@@ -207,3 +207,23 @@ def add_todo(request):
         else:
             messages.error(request, "Description cannot be empty.")
     return redirect('admin_dashboard')
+    
+def edit_todo(request, pk):
+    if request.method == 'POST':
+        description = request.POST.get('description')
+        if description:
+            Todo.objects.filter(id=pk).update(description=description)
+
+def delete_todo(request,pk):
+    if pk:
+        Todo.objects.filter(id=pk).delete()
+        return redirect('admin_dashboard')
+    else:
+        return redirect('admin_dashboard')
+    
+def delete_task(request,pk):
+    if pk:
+        Task.objects.filter(task_id=pk).delete()
+        return redirect('task')
+    else:
+        return redirect('task')

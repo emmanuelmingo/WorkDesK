@@ -41,6 +41,7 @@
         <div class="task-detail-container">
             <section class="task-detail-edit">
                 <i class="ri-edit-box-line "></i>
+                <i class="ri-delete-bin-line" onclick="window.location.href='{% url 'delete_task' task.task_id%}'"></i>
             </section>
             <section>
                 <div class="task-detail-header">
