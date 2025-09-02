@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Admin,Technicians,Task,Todo
+from .models import Admin,Technicians,Task,Todo,Unavailable
 from django.contrib import messages
 from datetime import date,datetime
 import random
@@ -92,7 +92,19 @@ def technician_dashboard(request):
         technicians = Technicians.objects.filter(id=request.session['technician_id']).get()
         technician_name = Technicians.objects.filter(id=request.session['technician_id']).get().name
         tasks = Task.objects.filter(technician_name=technician_name)
-        return render(request, 'tech_dashboard.html',{'technicians':technicians, 'tasks':tasks})
+        numberoftasks = Task.objects.filter(technician_name=technician_name).count()
+        backlogtasks = Task.objects.filter(technician_name=technician_name,status ='Not started').count()
+        inptasks = Task.objects.filter(technician_name=technician_name,status ='In progress').count()
+        comptasks = Task.objects.filter(technician_name=technician_name,status ='Completed').count()
+        context = {
+            'tasks':tasks,
+            'numberoftasks':numberoftasks,
+            'technicians': technicians,
+            'backlogtasks': backlogtasks,
+            'inptasks': inptasks,
+            'comptasks': comptasks,
+        }
+        return render(request, 'tech_dashboard.html',context)
 
 def task(request):
     admin_id = request.session.get('admin_id')
@@ -142,7 +154,10 @@ def task_detail(request,pk,role):
             elif task.status == 'In progress':
                 file = request.FILES.get('file')
                 if file:
-                    Task.objects.filter(task_id = pk).update(status = 'Completed', file=file)
+                    task = Task.objects.get(task_id=pk)
+                    task.status = 'Completed'
+                    task.file = file
+                    task.save()
                     messages.success(request, "Task marked as completed")
                     return redirect('technician_dashboard')
                 else:
@@ -188,7 +203,7 @@ def technicians(request):
     technicians = Technicians.objects.all()
     total_technicians = Technicians.objects.count()
     available_technicians = Technicians.objects.filter(status='available').count()
-    unavailable_technicians = Technicians.objects.filter(status='unavailable').count()
+    unavailable_technicians = Technicians.objects.filter(status='Unavailable').count()
     context ={
         'technicians':technicians,
         'total_technicians':total_technicians,
@@ -227,3 +242,21 @@ def delete_task(request,pk):
         return redirect('task')
     else:
         return redirect('task')
+
+def edit_status(request, pk):
+    if request.method == "POST":
+        status = request.POST.get('status')
+        reason = request.POST.get('reason')
+        if reason:
+            Technicians.objects.filter(id=pk).update(status=status)
+            unavailable = Unavailable.objects.create(
+                technician_id=pk,
+                reason=reason
+            )
+            unavailable.save()
+            return redirect('technician_dashboard')
+        else:
+            Technicians.objects.filter(id=pk).update(status=status)
+            return redirect('technician_dashboard')
+    else:
+        return redirect('technician_dashboard')

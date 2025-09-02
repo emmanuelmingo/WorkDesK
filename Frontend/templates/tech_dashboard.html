@@ -11,71 +11,115 @@
 </head>
 <body class="tech-body">
     <header class="tech-header">
-        <h2>WorkDesk</h2>
-        <div class="toogle-menu">
-            <i class="ri-menu-line nav_toogle_menu"></i>
-            <i class="ri-close-line nav_toogle_close"></i>
+        <div class="tech-data">
+            <h2>WorkDesk</h2>
         </div>
     </header>
     <main>
-        <div class="tech-profile">
-            <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
-            <div> 
-                <h3>{{ technicians.name }}</h3>
-                <p>Field Technician</p>
-            </div>
-        </div>
-        <div class="box-container">
-            <div class="boxes">
-                <div class="box">
-                    <i class="ri-bill-fill"></i>
-                    <div >
-                        <h4>15</h4>
-                        <p>Open Task</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <i class="ri-time-fill"></i>
-                    <div >
-                        <h4>15</h4>
-                        <p>Pending</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <i class="ri-play-circle-fill"></i>
-                    <div >
-                        <h4>15</h4>
-                        <p>In-progess</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <i class="ri-chat-check-fill"></i>
-                    <div >
-                        <h4>15</h4>
-                        <p>Completed</p>
+        <section>
+            <div class="tech-profile">
+                <img src="{% static 'header icons/person-removebg-preview.png'%}" alt="person-icon">
+                <div> 
+                    <h3>{{ technicians.name }}</h3>
+                    <p>Field Technician</p> 
+                    <i class="ri-edit-box-line" id="edit-status-icon" style="cursor:pointer;"></i>
+                    <div id="status-form-container" style="display:none;">
+                        {% if technicians.status == 'available' %}
+                            <form method="post" action="{% url 'edit_status' technicians.id %}">
+                                {% csrf_token %}
+                                <label for="status">Change Status:</label>
+                                <select name="status" id="status">
+                                    <option value="" disabled selected>{{technicians.status}}</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select><br>
+                                <label for="reason" >Reason</label><br>
+                                <textarea name="reason" id="reason" placeholder="Enter reason" required></textarea><br>
+                                <input type="submit" value="save">
+                                <button type="button" onclick="closeStatusForm()">Cancel</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{% url 'edit_status' technicians.id %}">
+                                {% csrf_token %}
+                                <label for="status">Change Status:</label>
+                                <select name="status" id="status">
+                                    <option value="" disabled selected>{{technicians.status}}</option>
+                                    <option value="available">available</option>
+                                </select><br>
+                                <input type="submit" value="save">
+                                <button type="button" onclick="closeStatusForm()">Cancel</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="box-container">
+                <div class="boxes">
+                    <div class="box">
+                        <i class="ri-bill-fill"></i>
+                        <div >
+                            <h4>{{numberoftasks}}</h4>
+                            <p>Total Tasks</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <i class="ri-time-fill"></i>
+                        <div >
+                            <h4>{{backlogtasks}}</h4>
+                            <p>Backlog</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <i class="ri-play-circle-fill"></i>
+                        <div >
+                            <h4>{{inptasks}}</h4>
+                            <p>In-progess</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <i class="ri-chat-check-fill"></i>
+                        <div >
+                            <h4>{{comptasks}}</h4>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h5>Task List</h5>
+            <div class="task-container">
+                <div class="task-cards">
+                    {% for task in tasks %}
+                    <div class="task-card" onclick="window.location.href='{% url 'task_detail' task.pk technicians.role %}';" style="cursor: pointer;">
+                        <div class="task-info">
+                            <div class="task-id">
+                                <p>{{task.task_id}}</p>
+                                <p>{{task.title}}</p>
+                            </div>
+                            <h4>{{task.status}}</h4>
+                        </div>
+                        <div>
+                            <p>{{task.due_date}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
     </main>
-    <h5>Task List</h5>
-    <div class="task-container">
-        <div class="task-cards">
-            {% for task in tasks %}
-            <div class="task-card" onclick="window.location.href='{% url 'task_detail' task.pk technicians.role %}';" style="cursor: pointer;">
-                <div class="task-info">
-                    <div class="task-id">
-                        <p>{{task.task_id}}</p>
-                        <p>{{task.title}}</p>
-                    </div>
-                    <h4>{{task.status}}</h4>
-                </div>
-                <div>
-                    <p>{{task.due_date}}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editIcon = document.getElementById('edit-status-icon');
+            const formContainer = document.getElementById('status-form-container');
+
+            editIcon.onclick = function() {
+                formContainer.style.display = 'block';
+            };
+
+            window.closeStatusForm = function() {
+                formContainer.style.display = 'none';
+            };
+        });
+    </script>
 </body>
 </html>

@@ -80,7 +80,19 @@
                 <div class="task-detail-attachment">
                     <p>Attachments</p>
                     {% if task.file%}
-                        <span>hey</span>
+                        <div class="attachment-preview">
+                            {% if ".pdf" in task.file.url|lower %}
+                                <iframe src="{{ task.file.url }}" width="200" height="200"></iframe>
+
+                            {% else %}
+                                <iframe src="{{ task.file.url }}" width="400" height="300"></iframe>
+
+                            {% endif %}
+                            <br>
+                            <a href="{{ task.file.url }}" download class="download-btn">
+                                <button type="button">Download File</button>
+                            </a>
+                        </div>
                     {% else %}
                          <div class="no-attachment">
                             <i class="ri-file-list-3-line"></i>

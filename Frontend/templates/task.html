@@ -171,7 +171,9 @@
                     <select name="technician" id="technician" required>
                         <option value="" disabled selected>Select Technician</option>
                         {% for technician in technicians %}
-                            <option value="{{ technician.name }}">{{ technician.name }}</option>
+                            {% if technician.status == 'available' %}
+                                <option value="{{ technician.name }}">{{ technician.name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select><br>
 

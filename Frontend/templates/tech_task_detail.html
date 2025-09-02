@@ -12,9 +12,10 @@
 <body class="task-detail-body">
     <main class="task-detail-main">
         <div class="task-detail-card">
-            <h2>
-                Task {{task.task_id}}
-            </h2>
+            <div class="task-detail-back">
+                <h2>Task {{task.task_id}}</h2>
+                <a href="{% url 'technician_dashboard' %}"><i class="ri-arrow-left-line"></i></a>
+            </div>
             <div class="task-detail-title">
                 <h3>{{task.title}}</h3>
                 <p>{{task.status}}</p>
@@ -47,15 +48,10 @@
                 <p>SGC, Bonapriso</p>
             </div>
             {% if task.status == 'In progress' %}
-                <form class="attachment-form" action="{% url 'task_detail' task.task_id technician.role%}" method="post">
+                <form class="attachment-form" action="{% url 'task_detail' task.task_id technician.role%}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <h3>Attachments</h3>
                     <p>Upload a file to mark the task as completed</p>
-                    {% if task.file %}
-                        <embed src="{{ task.file.url }}" type="application/pdf" width="600px" height="500px" />
-                    {% else %}
-                        <p>No file uploaded yet.</p>
-                    {% endif %}
                     <input type="file" name="file">
                     <input type="submit" value="Mark as Completed" class="upload-button">
                 </form>
